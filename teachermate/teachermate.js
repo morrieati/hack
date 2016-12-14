@@ -10,7 +10,8 @@ function checkin() {
 		},
 		form: {
 			'openid': 'oXygDt6XNpPI3MvVinBt7rRlrdTs',
-			'course_id': '3850',
+			'course_id': '3850', // Zuyuan
+			// 'course_id': '7046', // Test
 			'lon': '0',
 			'lat': '0',
 			'wx_csrf_name': ''
@@ -19,10 +20,11 @@ function checkin() {
 		(error, response, body) => {
 			if (!error && response.statusCode == 200) {
 				var msg = JSON.parse(body).msg;
-				console.log(msg);
 				if (msg == "sign in success") {
+					console.log(msg + " and you got " + JSON.parse(body).data.sign_rank + " place");
 					return;
 				} else {
+					console.log(msg);
 					checkin();
 				}
 			} else {
