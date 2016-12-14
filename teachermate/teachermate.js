@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 var request = require('request').defaults({ jar: true });
 
 function checkin() {

@@ -5,6 +5,9 @@
   "scripts": {
     "start": "node teachermate.js"
   },
+  "bin": {
+    "checkin": "teachermate.js"
+  },
   "dependencies": {
     "request": "^2.79.0"
   }
