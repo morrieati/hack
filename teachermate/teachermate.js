@@ -3,7 +3,7 @@ var request = require('request').defaults({ jar: true });
 
 function checkin() {
 	request.post({
-		url: 'https://www.teachermate.com.cn/wechat/wechat/legacy/student/sign_in',
+		url: 'https://www.teachermate.com.cn/wechat-api/v1/class-attendance/student-sign-in',
 		headers: {
 			'Content-Type': 'application/x-www-form-urlencoded',
 			'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 8_4 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12H143 MicroMessenger/6.2.3 NetType/WIFI Language/zh_CN',
@@ -20,16 +20,11 @@ function checkin() {
 	},
 		(error, response, body) => {
 			if (!error && response.statusCode == 200) {
-				var msg = JSON.parse(body).msg;
-				if (msg == "sign in success") {
-					console.log(msg + " and you got " + JSON.parse(body).data.sign_rank + " place");
-					return;
-				} else {
-					console.log(msg);
-					checkin();
-				}
+				console.log(body + " and you got " + JSON.parse(body).data.sign_rank + " place");
+				return;
 			} else {
-				console.log(response);
+				console.log(body);
+				checkin();
 			}
 		}
 	);
